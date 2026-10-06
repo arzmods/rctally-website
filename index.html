@@ -59,7 +59,7 @@ body{padding-inline:20px}
 
 .section{padding-block:clamp(3.5rem,7vw,6rem)}
 .section+.section{border-top:1px solid var(--line)}
-:where(#about,#services,#contact,#gallery){scroll-margin-top:7.5rem}
+:where(#about,#services,#contact,#gallery){scroll-margin-top:8.5rem}
 
 .eyebrow{
   font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
@@ -123,7 +123,7 @@ body{padding-inline:20px}
 .logo-img{height:52px; width:auto}
 
 @media (max-width:620px){
-  .logo-slot,.logo-img{order:1; margin-inline:auto}  /* centered on phones */
+  .brand{order:1; margin-inline:auto}  /* centered on phones */
   .logo-img{height:42px}
   .nav{order:2; flex:1 1 100%; justify-content:center; padding-bottom:.2rem}
   .nav a{padding:.4rem .55rem; font-size:.88rem}
@@ -332,6 +332,23 @@ body{padding-inline:20px}
 .contact-card .btn.btn-sm{font-size:.9rem; padding:.7rem 1rem}
 .mini-row{display:flex; flex-wrap:wrap; gap:.5rem; width:100%}
 .contact-card .mini-row .btn{flex:1 1 140px; width:auto}
+
+/* ---- tagline under the logo ---- */
+.brand{display:inline-flex; flex-direction:column; align-items:center; gap:.3rem}
+.tagline{
+  align-self:stretch; display:flex; align-items:center; gap:.55rem; margin:0;
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-size:.8rem; font-weight:700; letter-spacing:.05em; line-height:1;
+  color:var(--purple); white-space:nowrap;
+}
+.tagline::before,.tagline::after{
+  content:""; flex:1 1 auto; min-width:16px; height:1.5px;
+  background:currentColor; opacity:.55; border-radius:1px;
+}
+@media (max-width:620px){
+  :where(#about,#services,#contact,#gallery){scroll-margin-top:10.5rem}
+  .tagline::before,.tagline::after{min-width:30px}
+}
 </style>
 </head>
 <body>
@@ -339,8 +356,11 @@ body{padding-inline:20px}
 <!-- ============================ TOP BAR ============================ -->
 <header class="topbar" id="top">
   <div class="bar-inner">
-    <img class="logo-img" src="img/logo.png"
-         alt="RC Tally Cleaning Service LLC">
+    <div class="brand">
+      <img class="logo-img" src="img/logo.png"
+           alt="RC Tally Cleaning Service LLC">
+      <p class="tagline">You Rest! We Clean!</p>
+    </div>
 
     <nav class="nav" aria-label="Main">
       <a href="#top">Home</a>
