@@ -349,6 +349,27 @@ body{padding-inline:20px}
   :where(#about,#services,#contact,#gallery){scroll-margin-top:10.5rem}
   .tagline::before,.tagline::after{min-width:30px}
 }
+
+/* ---- About: story, mission / vision, sign-off ---- */
+.h1-sub{
+  display:block; margin-top:.7rem; color:var(--purple);
+  font-size:clamp(1.15rem,2.4vw,1.55rem); font-weight:600; line-height:1.25; letter-spacing:-.01em;
+}
+.beat{
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-size:1.18rem; font-weight:700; letter-spacing:-.01em; color:var(--ink); max-width:62ch;
+}
+.mv{display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; margin-top:clamp(2.5rem,5vw,4rem)}
+.mv-card{background:var(--surface-2); border:1px solid var(--line); border-radius:14px; padding:1.5rem 1.6rem}
+.mv-card .eyebrow{margin-bottom:.7rem}
+.mv-text{font-size:1.08rem; line-height:1.6}
+@media (max-width:720px){ .mv{grid-template-columns:1fr} }
+.signoff{
+  margin-top:clamp(2.5rem,5vw,3.5rem); padding-top:clamp(2rem,4vw,2.75rem);
+  border-top:1px solid var(--line); display:grid; gap:.45rem; justify-items:center; text-align:center;
+}
+.signoff-name{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif; font-size:1.3rem; font-weight:700}
+.signoff-line{color:var(--purple); font-weight:500; font-size:1.05rem; text-wrap:balance}
 </style>
 </head>
 <body>
@@ -377,19 +398,46 @@ body{padding-inline:20px}
     <div class="wrap about-grid">
       <div class="about-copy">
         <p class="eyebrow">About us</p>
-        <h1>Cleaning you don&rsquo;t have to think about.</h1>
-        <p class="lede">RC Tally is a locally owned cleaning company based in Tallahassee,
-          serving homes and small businesses across North Florida and South Georgia.</p>
-        <p class="body-text">We started with one van, a short list of neighbors, and a simple
-          promise: show up when we say we will, and leave the place better than we found it.
-          That&rsquo;s still how we work. Every job is handled by our own trained crew &mdash;
-          same faces, same checklist, every visit.</p>
-        <ul class="facts">
-          <li>Licensed and insured</li>
-          <li>We bring our own supplies and equipment</li>
-          <li>Free walkthrough estimates</li>
-          <li>Flat pricing &mdash; no surprise add-ons</li>
-        </ul>
+        <h1>More Than Cleaning.<span class="h1-sub">A Story of Vision, Hard Work &amp; Opportunity.</span></h1>
+
+        <p class="lede">RC Tally Cleaning Service, LLC was built on a simple belief: when hard work,
+          integrity, and opportunity come together, something meaningful can be created.</p>
+
+        <p class="body-text">Our founder, Jhonny Rodríguez, began his professional journey far from
+          Tallahassee. Born and raised in the Dominican Republic, Jhonny pursued a career in dentistry,
+          becoming a dentist and developing a professional foundation centered on precision, discipline,
+          attention to detail, and caring for people.</p>
+
+        <p class="beat">But Jhonny also had an entrepreneurial spirit.</p>
+
+        <p class="body-text">When he immigrated to the United States, he brought more than his
+          professional background with him. He brought a vision&mdash;the determination to build
+          something of his own, create opportunities for his family and others, and establish a
+          business founded on trust and excellent service.</p>
+
+        <p class="beat">That vision became RC Tally Cleaning Service.</p>
+
+        <p class="body-text">Like many entrepreneurial stories, ours was not built overnight. It was
+          built one opportunity at a time, one client at a time, and one project at a time. Through hard
+          work, consistency, and a willingness to take on new challenges, RC Tally has continued to grow
+          from providing cleaning services into handling larger commercial, property, and project-based
+          opportunities.</p>
+
+        <p class="body-text">The principles Jhonny developed throughout his professional career remain
+          at the heart of the company today: attention to detail, responsibility, integrity,
+          professionalism, and a commitment to doing the job right.</p>
+
+        <p class="body-text">At RC Tally, we understand that clients are trusting us with their
+          businesses, properties, and projects. That is why our goal goes beyond simply completing a job.
+          We want to build long-term relationships and become a company our clients know they can
+          depend on.</p>
+
+        <p class="beat">Our story is still being written.</p>
+
+        <p class="body-text">What started as the vision of an immigrant entrepreneur has become a
+          growing local business with an even bigger vision for the future: to create jobs, develop
+          people, expand our services, and build a company recognized throughout Tallahassee and beyond
+          for quality, reliability, and integrity.</p>
 
         <div class="area">
           <span class="contact-label">Service area</span>
@@ -412,6 +460,26 @@ body{padding-inline:20px}
           <span class="founder-name">Johnny A. Rodriguez</span>
         </figcaption>
       </figure>
+    </div>
+
+    <div class="wrap mv">
+      <div class="mv-card">
+        <p class="eyebrow">Our mission</p>
+        <p class="mv-text">To provide dependable, high-quality cleaning and property services while
+          building lasting relationships with our clients and creating opportunities for the people
+          who work alongside us.</p>
+      </div>
+      <div class="mv-card">
+        <p class="eyebrow">Our vision</p>
+        <p class="mv-text">To grow RC Tally into a trusted name in commercial cleaning and property
+          services while never losing the values that built the company: hard work, integrity,
+          excellence, and service.</p>
+      </div>
+    </div>
+
+    <div class="wrap signoff">
+      <p class="signoff-name">RC Tally Cleaning Service, LLC</p>
+      <p class="signoff-line">Built with vision. Driven by excellence. Growing through trust.</p>
     </div>
   </section>
 
