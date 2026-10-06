@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="RC Tally Cleaning Service LLC - residential, commercial, dental, medical and spa cleaning based in Tallahassee, serving North Florida and South Georgia. Call (850) 300-0770.">
+<link rel="icon" type="image/png" href="img/logo-icon.png">
+<title>RC Tally Cleaning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Karla:wght@400;500;700&display=swap">
+
+<style>
+/* ============================================================
+   1. COLORS  — change these hex codes to rebrand the whole site
+   ============================================================ */
+:root{
+  color-scheme:light;                /* page stays white even in phone dark mode */
+  --paper:#FFFFFF;        /* page background          */
+  --surface:#FFFFFF;      /* cards                    */
+  --surface-2:#F8F4FA;    /* faint purple-white band  */
+  --ink:#0B0A0F;          /* black text               */
+  --muted:#55505F;        /* secondary text           */
+  --line:#E8E3EC;         /* hairlines                */
+  --line-strong:#C4A6D3;  /* dashed image outlines    */
+  --purple:#560082;       /* BUTTONS + accents (logo) */
+  --purple-deep:#3E005E;  /* button hover             */
+  --purple-soft:#F3EBF7;  /* light purple tint        */
+  --navy:#013286;         /* logo navy, small accents */
+  --on-purple:#FFFFFF;    /* text on purple           */
+  --slot:#F6F2F9;         /* image placeholder bg     */
+  --shadow:0 1px 2px rgba(11,10,15,.05), 0 14px 30px -20px rgba(11,10,15,.35);
+  --shadow-purple:0 6px 18px -8px rgba(86,0,130,.5);
+}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Karla","Segoe UI",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{
+  font-family:"Bricolage Grotesque","Trebuchet MS","Segoe UI",system-ui,sans-serif;
+  text-wrap:balance; margin:0; line-height:1.08; letter-spacing:-.02em; color:var(--ink);
+}
+h1{font-size:clamp(2.1rem,5.2vw,3.4rem); font-weight:700}
+h2{font-size:clamp(1.7rem,3.8vw,2.5rem); font-weight:700}
+h3{font-size:1.15rem; font-weight:700; letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+img{display:block; max-width:100%}
+
+.wrap{width:100%; max-width:1120px; margin-inline:auto}
+body{padding-inline:20px}
+
+.section{padding-block:clamp(3.5rem,7vw,6rem)}
+.section+.section{border-top:1px solid var(--line)}
+:where(#about,#services,#contact,#gallery){scroll-margin-top:7.5rem}
+
+.eyebrow{
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--purple); display:flex; align-items:center; gap:.6rem; margin-bottom:.9rem;
+}
+.eyebrow::before{content:""; width:26px; height:3px; background:var(--navy); border-radius:2px}
+.lede{font-size:clamp(1.05rem,1.8vw,1.25rem); color:var(--muted); max-width:60ch}
+.body-text{color:var(--muted); max-width:62ch}
+
+/* ============================================================
+   3. BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-weight:700; font-size:1rem; line-height:1;
+  padding:.95rem 1.5rem; border-radius:10px; cursor:pointer;
+  text-decoration:none; border:2px solid var(--purple);
+  background:var(--purple); color:var(--on-purple);
+  box-shadow:var(--shadow-purple);
+  transition:background .15s ease, border-color .15s ease, transform .15s ease;
+}
+.btn:hover{background:var(--purple-deep); border-color:var(--purple-deep); transform:translateY(-1px)}
+.btn.ghost{background:transparent; color:var(--purple); box-shadow:none}
+.btn.ghost:hover{background:var(--purple-soft); color:var(--purple-deep)}
+.btn-row{display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1.8rem}
+:focus-visible{outline:3px solid var(--purple); outline-offset:3px; border-radius:10px}
+
+/* ============================================================
+   4. TOP BAR  (nav left, logo right)
+   ============================================================ */
+.topbar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:50;
+  background:rgba(255,255,255,.9); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  margin-inline:-20px; padding-inline:20px;
+}
+.bar-inner{
+  max-width:1120px; margin-inline:auto;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:1rem; flex-wrap:wrap; padding-block:.7rem;
+}
+.nav{display:flex; align-items:center; gap:.2rem; flex-wrap:wrap}
+.nav a{
+  text-decoration:none; color:var(--ink);
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-weight:500; font-size:.95rem;
+  padding:.45rem .7rem; border-radius:8px;
+  transition:background .15s ease, color .15s ease;
+}
+.nav a:hover{background:var(--purple-soft); color:var(--purple)}
+
+/* --- LOGO SLOT: swap the inner markup for <img class="logo-img" src="..."> --- */
+.logo-slot{
+  display:grid; place-content:center; gap:.1rem; text-align:center;
+  min-width:150px; height:54px; padding:.3rem .8rem;
+  border:1.5px dashed var(--line-strong); border-radius:10px;
+  background:var(--slot); color:var(--muted);
+}
+.logo-img{height:52px; width:auto}
+
+@media (max-width:620px){
+  .logo-slot,.logo-img{order:1}
+  .logo-img{height:42px}
+  .nav{order:2; flex:1 1 100%; justify-content:center; padding-bottom:.2rem}
+  .nav a{padding:.4rem .55rem; font-size:.88rem}
+}
+
+/* ============================================================
+   5. IMAGE PLACEHOLDERS — replace each .slot with an <img>
+   ============================================================ */
+.slot{
+  position:relative; width:100%; aspect-ratio:var(--ar,4/3);
+  display:grid; place-content:center; gap:.3rem; text-align:center; padding:1rem;
+  border:1.5px dashed var(--line-strong); border-radius:12px;
+  background-color:var(--slot);
+  background-image:repeating-linear-gradient(45deg,transparent 0 11px,rgba(86,0,130,.06) 11px 22px);
+  color:var(--muted);
+}
+.slot-label{
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-weight:700; font-size:.82rem; letter-spacing:.1em; text-transform:uppercase;
+}
+.slot-hint{font-size:.72rem; opacity:.85}
+
+/* ============================================================
+   6. ABOUT
+   ============================================================ */
+.about-grid{
+  display:grid; grid-template-columns:1.25fr .85fr; gap:clamp(2rem,4vw,3.5rem); align-items:start;
+}
+.about-copy>*+*{margin-top:1.1rem}
+.facts{list-style:none; margin:1.6rem 0 0; padding:0; display:grid; gap:.55rem}
+.facts li{display:flex; gap:.6rem; align-items:flex-start; font-weight:500}
+.facts li::before{
+  content:""; flex:none; width:9px; height:9px; margin-top:.55rem;
+  border-radius:50%; background:var(--purple);
+}
+.founder{margin:0; display:grid; gap:0; position:sticky; top:8rem}
+.founder-caption{
+  background:var(--surface); border:1px solid var(--line); border-top:none;
+  border-radius:0 0 12px 12px; padding:1rem 1.1rem;
+  display:grid; gap:.15rem; box-shadow:var(--shadow);
+}
+.founder .slot{border-radius:12px 12px 0 0; border-bottom-style:solid; border-bottom-color:var(--line)}
+.role{
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-size:.74rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--purple);
+}
+.founder-name{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif; font-size:1.3rem; font-weight:700}
+
+@media (max-width:820px){
+  .about-grid{grid-template-columns:1fr}
+  .founder{position:static; max-width:380px}
+}
+
+/* ============================================================
+   7. SERVICES
+   ============================================================ */
+.section-head{margin-bottom:clamp(2rem,4vw,3rem); max-width:58ch}
+.services{display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem}
+.service{
+  background:var(--surface); border:1px solid var(--line); border-radius:14px;
+  overflow:hidden; display:flex; flex-direction:column;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.service:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:var(--line-strong)}
+.service .slot{border:none; border-radius:0; border-bottom:1px solid var(--line)}
+.service-body{padding:1.1rem 1.2rem 1.4rem; display:grid; gap:.45rem}
+.service p{color:var(--muted); font-size:.94rem}
+.service.wide{grid-column:1 / -1; flex-direction:row; align-items:stretch}
+.service.wide .slot{
+  flex:0 0 40%; aspect-ratio:auto; min-height:230px;
+  border-bottom:none; border-right:1px solid var(--line);
+}
+.service.wide .service-body{flex:1; align-content:center; padding:1.7rem 1.9rem; gap:.6rem}
+.service.wide h3{font-size:1.35rem}
+.service.wide p{font-size:1rem; max-width:52ch}
+.tags{display:flex; flex-wrap:wrap; gap:.4rem}
+.tag{
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-size:.7rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--purple); background:var(--purple-soft);
+  border-radius:999px; padding:.32rem .7rem;
+}
+@media (max-width:700px){
+  .service.wide{flex-direction:column}
+  .service.wide .slot{
+    flex:auto; aspect-ratio:4/3; min-height:0;
+    border-right:none; border-bottom:1px solid var(--line);
+  }
+  .service.wide .service-body{padding:1.1rem 1.2rem 1.4rem}
+}
+@media (max-width:900px){.services{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.services{grid-template-columns:1fr}}
+
+/* ============================================================
+   8. CONTACT
+   ============================================================ */
+#contact{background:var(--surface-2); margin-inline:-20px; padding-inline:20px}
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,4vw,3.5rem); align-items:start}
+.contact-lines{display:grid; gap:1rem}
+.contact-card{
+  background:var(--surface); border:1px solid var(--line); border-radius:12px;
+  padding:1.25rem; display:grid; gap:.7rem; justify-items:start;
+}
+.contact-label{
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-size:.72rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
+}
+.contact-card .btn{width:100%; font-size:clamp(.95rem,2.2vw,1.15rem); word-break:break-word}
+.contact-meta{display:grid; gap:.9rem; margin-top:1.8rem}
+.meta-row{display:grid; gap:.1rem; padding-bottom:.9rem; border-bottom:1px solid var(--line)}
+.meta-row:last-child{border-bottom:none; padding-bottom:0}
+@media (max-width:820px){.contact-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   9. GALLERY CAROUSEL
+   ============================================================ */
+.carousel{position:relative; margin-top:.5rem}
+.viewport{overflow:hidden; border-radius:14px; background:var(--slot)}
+.track{display:flex; transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.slide{flex:0 0 100%; min-width:0}
+.slide .slot{border-radius:0; border:none; aspect-ratio:16/9}
+.arrow{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:3;
+  width:48px; height:48px; border-radius:50%; cursor:pointer;
+  border:none; background:var(--purple); color:var(--on-purple);
+  font-size:1.6rem; line-height:1; display:grid; place-content:center;
+  box-shadow:var(--shadow-purple); transition:background .15s ease, transform .15s ease;
+}
+.arrow:hover{background:var(--purple-deep); transform:translateY(-50%) scale(1.07)}
+.arrow.prev{left:12px} .arrow.next{right:12px}
+.gallery-foot{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:1rem; flex-wrap:wrap; margin-top:1.1rem;
+}
+.caption{font-weight:500}
+.counter{color:var(--muted); font-size:.9rem; font-variant-numeric:tabular-nums}
+.dots{display:flex; gap:.45rem}
+.dot{
+  width:10px; height:10px; padding:0; border-radius:50%; cursor:pointer;
+  border:1.5px solid var(--line-strong); background:transparent;
+}
+.dot[aria-current="true"]{background:var(--purple); border-color:var(--purple)}
+@media (max-width:600px){
+  .arrow{width:40px; height:40px; font-size:1.25rem}
+  .arrow.prev{left:8px} .arrow.next{right:8px}
+}
+@media (prefers-reduced-motion: reduce){
+  .track,.service,.btn,.arrow{transition:none}
+}
+
+/* ============================================================
+   10. FOOTER
+   ============================================================ */
+.foot{
+  border-top:1px solid var(--line); padding-block:2.5rem 3rem;
+  display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:space-between; align-items:flex-start;
+  color:var(--muted); font-size:.92rem;
+}
+.foot strong{
+  display:block; font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-size:1.15rem; color:var(--ink); margin-bottom:.25rem;
+}
+.foot a{color:var(--purple); font-weight:500}
+
+/* ============================================================
+   11. REAL PHOTOS  (swap a src to change a picture)
+   ============================================================ */
+.card-img{
+  width:100%; aspect-ratio:4/3; object-fit:cover;
+  border-bottom:1px solid var(--line);
+}
+.service.wide .card-img{
+  flex:0 0 40%; width:auto; aspect-ratio:auto; min-height:240px;
+  align-self:stretch; border-bottom:none; border-right:1px solid var(--line);
+}
+.slide-img{width:100%; aspect-ratio:16/9; object-fit:cover; display:block}
+@media (max-width:700px){
+  .service.wide .card-img{
+    flex:auto; width:100%; aspect-ratio:4/3; min-height:0;
+    border-right:none; border-bottom:1px solid var(--line);
+  }
+}
+
+/* ---- service-area callout in About ---- */
+.area{
+  margin-top:1.9rem; padding:1.15rem 1.3rem; max-width:62ch;
+  background:var(--purple-soft); border:1px solid var(--line-strong);
+  border-radius:12px; display:grid; gap:.35rem;
+}
+.area-title{
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  font-weight:700; font-size:1.1rem; letter-spacing:-.01em;
+}
+.area-list{color:var(--muted); font-size:.93rem}
+
+/* ---- logo ---- */
+.foot-logo{height:92px; width:auto; margin-bottom:.7rem}
+
+/* ---- founder photo ---- */
+.founder-img{
+  width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center top;
+  border:1px solid var(--line); border-bottom:none; border-radius:12px 12px 0 0;
+}
+
+/* ---- copy buttons under email / phone ---- */
+.contact-card .btn.btn-sm{font-size:.9rem; padding:.7rem 1rem}
+.mini-row{display:flex; flex-wrap:wrap; gap:.5rem; width:100%}
+.contact-card .mini-row .btn{flex:1 1 140px; width:auto}
+</style>
+</head>
+<body>
+
+<!-- ============================ TOP BAR ============================ -->
+<header class="topbar" id="top">
+  <div class="bar-inner">
+    <img class="logo-img" src="img/logo.png"
+         alt="RC Tally Cleaning Service LLC">
+
+    <nav class="nav" aria-label="Main">
+      <a href="#top">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact Us</a>
+      <a href="#gallery">Gallery</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ============================ ABOUT ============================ -->
+  <section id="about" class="section">
+    <div class="wrap about-grid">
+      <div class="about-copy">
+        <p class="eyebrow">About us</p>
+        <h1>Cleaning you don&rsquo;t have to think about.</h1>
+        <p class="lede">RC Tally is a locally owned cleaning company based in Tallahassee,
+          serving homes and small businesses across North Florida and South Georgia.</p>
+        <p class="body-text">We started with one van, a short list of neighbors, and a simple
+          promise: show up when we say we will, and leave the place better than we found it.
+          That&rsquo;s still how we work. Every job is handled by our own trained crew &mdash;
+          same faces, same checklist, every visit.</p>
+        <ul class="facts">
+          <li>Licensed and insured</li>
+          <li>We bring our own supplies and equipment</li>
+          <li>Free walkthrough estimates</li>
+          <li>Flat pricing &mdash; no surprise add-ons</li>
+        </ul>
+
+        <div class="area">
+          <span class="contact-label">Service area</span>
+          <p class="area-title">Based in Tallahassee &mdash; and we travel.</p>
+          <p class="area-list">We cover North Florida and South Georgia, including Crawfordville,
+            Quincy, Havana, Monticello, and Perry, plus Thomasville, Bainbridge, and Valdosta
+            across the Georgia line. Not sure if you&rsquo;re in range? Give us a call and ask.</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn" href="#contact">Get a free quote</a>
+          <a class="btn ghost" href="#services">See our services</a>
+        </div>
+      </div>
+
+      <figure class="founder">
+        <img class="founder-img" src="img/founder.jpg"
+             alt="Johnny A. Rodriguez, founder of RC Tally Cleaning Service">
+        <figcaption class="founder-caption">
+          <span class="role">Founder</span>
+          <span class="founder-name">Johnny A. Rodriguez</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================ SERVICES ============================ -->
+  <section id="services" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2>What we clean</h2>
+        <p class="lede" style="margin-top:.8rem">Homes, offices, and clinical spaces. Pick the one that
+          fits, or call and we&rsquo;ll put together a plan for your space.</p>
+      </div>
+
+      <div class="services">
+        <article class="service">
+          <img class="card-img" src="img/home-cleaning.jpg" alt="Bright, tidy living room with a vacuum ready on the rug and cleaning supplies on the coffee table">
+          <div class="service-body">
+            <h3>Recurring Home Cleaning</h3>
+            <p>Weekly, biweekly, or monthly upkeep on a set schedule. Kitchens, baths, floors,
+              dusting, trash &mdash; the whole rotation.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <img class="card-img" src="img/deep-cleaning.jpg" alt="Spotless kitchen with a freshly cleaned oven open after a deep clean">
+          <div class="service-body">
+            <h3>Deep Cleaning</h3>
+            <p>The reset. Baseboards, vents, grout, inside the oven and fridge, behind and under
+              the things that normally get skipped.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <img class="card-img" src="img/move-out.jpg" alt="Empty apartment with polished hardwood floors and wiped-down closet shelves">
+          <div class="service-body">
+            <h3>Move-In / Move-Out</h3>
+            <p>Empty-unit cleans for tenants, landlords, and realtors. Cabinets, closets, and
+              appliances cleaned inside and out.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <img class="card-img" src="img/office.jpg" alt="Modern office cleaned after hours with a janitorial cart in the aisle">
+          <div class="service-body">
+            <h3>Office &amp; Commercial</h3>
+            <p>After-hours cleaning for offices, salons, clinics, and retail. Restocking and
+              trash-out included on every visit.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <img class="card-img" src="img/post-construction.jpg" alt="Newly built interior cleaned and dust-free after construction">
+          <div class="service-body">
+            <h3>Post-Construction</h3>
+            <p>Fine dust removal, sticker and adhesive cleanup, window and fixture polish so the
+              space is ready to hand over.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <img class="card-img" src="img/windows.jpg" alt="Squeegee leaving a streak-free stripe across a residential window">
+          <div class="service-body">
+            <h3>Windows &amp; Pressure Washing</h3>
+            <p>Interior and exterior glass, plus driveways, walkways, and siding washed down to
+              the original color.</p>
+          </div>
+        </article>
+
+        <article class="service wide">
+          <img class="card-img" src="img/facilities.jpg" alt="Spotless dental operatory with a sanitized chair and instrument tray">
+          <div class="service-body">
+            <h3>Dental, Medical &amp; Spa Facilities</h3>
+            <div class="tags">
+              <span class="tag">Dental</span>
+              <span class="tag">Medical</span>
+              <span class="tag">Spa &amp; Wellness</span>
+            </div>
+            <p>Operatory and exam room turnovers, sterilization and lab areas, treatment rooms,
+              locker rooms, and waiting areas. We clean around your hours and follow your
+              facility&rsquo;s own disinfection protocol &mdash; regulated waste stays with your
+              licensed provider.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CONTACT ============================ -->
+  <section id="contact" class="section">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="eyebrow">Contact us</p>
+        <h2>Get a free quote</h2>
+        <p class="lede" style="margin-top:.9rem">Call or email and we&rsquo;ll set up a walkthrough.
+          Most estimates take under 15 minutes, and there&rsquo;s no charge for the visit.</p>
+        <div class="contact-meta">
+          <div class="meta-row">
+            <span class="contact-label">Hours</span>
+            <span>Monday &ndash; Friday, 8:00am &ndash; 5:00pm</span>
+          </div>
+          <div class="meta-row">
+            <span class="contact-label">Service area</span>
+            <span>Based in Tallahassee &mdash; North Florida &amp; South Georgia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-lines">
+        <div class="contact-card">
+          <span class="contact-label">Email</span>
+          <a class="btn" href="mailto:admin@rctally.com">admin@rctally.com</a>
+          <div class="mini-row">
+            <a class="btn ghost btn-sm" target="_blank" rel="noopener"
+               href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=admin@rctally.com">Open in Gmail</a>
+            <button class="btn ghost btn-sm" type="button" data-copy="admin@rctally.com"
+                    data-label="Copy email">Copy email</button>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="contact-label">Phone</span>
+          <a class="btn" href="tel:+18503000770">(850) 300-0770</a>
+          <div class="mini-row">
+            <button class="btn ghost btn-sm" type="button" data-copy="(850) 300-0770"
+                    data-label="Copy phone number">Copy phone number</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ GALLERY ============================ -->
+  <section id="gallery" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Gallery</p>
+        <h2>Recent work</h2>
+      </div>
+
+      <div class="carousel" id="carousel" tabindex="0" role="region"
+           aria-roledescription="carousel" aria-label="Photos of recent work">
+        <button class="arrow prev" id="prev" type="button" aria-label="Previous photo">&#8249;</button>
+
+        <div class="viewport">
+          <!-- GALLERY PHOTOS: replace each .slot div with <img src="..." alt="..."> -->
+          <div class="track" id="track">
+            <div class="slide"><img class="slide-img" src="img/pressure-washing.jpg" alt="Driveway being pressure washed, clean stripe against old concrete"></div>
+            <div class="slide"><img class="slide-img" src="img/gallery-facilities.jpg" alt="Dental treatment room cleaned and sanitized after hours"></div>
+            <div class="slide"><img class="slide-img" src="img/office.jpg" alt="Empty desks and conference room cleaned after hours"></div>
+            <div class="slide"><img class="slide-img" src="img/deep-cleaning.jpg" alt="Kitchen oven and cooktop after a deep clean"></div>
+            <div class="slide"><img class="slide-img" src="img/move-out.jpg" alt="Empty unit cleaned and ready for new tenants"></div>
+            <div class="slide"><img class="slide-img" src="img/post-construction.jpg" alt="New build cleaned and polished for handover"></div>
+          </div>
+        </div>
+
+        <button class="arrow next" id="next" type="button" aria-label="Next photo">&#8250;</button>
+      </div>
+
+      <div class="gallery-foot">
+        <p class="caption" id="caption">Driveway &mdash; pressure washing</p>
+        <div class="dots" id="dots" aria-label="Choose photo"></div>
+        <p class="counter" id="counter">1 / 6</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="foot wrap">
+  <div>
+    <img class="foot-logo" src="img/logo-stacked.png"
+         alt="RC Tally Cleaning Service LLC">
+    Based in Tallahassee. Serving North Florida &amp; South Georgia.
+  </div>
+  <div>
+    <a href="mailto:admin@rctally.com">admin@rctally.com</a><br>
+    <a href="tel:+18503000770">(850) 300-0770</a>
+  </div>
+  <div id="copyright">&copy; RC Tally</div>
+</footer>
+
+<script>
+(function(){
+  /* --- GALLERY CAPTIONS: edit this list to match your photos --- */
+  var captions = [
+    "Driveway — pressure washing",
+    "Dental office — after hours",
+    "Office — after hours",
+    "Kitchen — oven deep clean",
+    "Move-out — empty unit",
+    "Post-construction — final polish"
+  ];
+
+  var track   = document.getElementById("track");
+  var slides  = track.children;
+  var count   = slides.length;
+  var dotsBox = document.getElementById("dots");
+  var caption = document.getElementById("caption");
+  var counter = document.getElementById("counter");
+  var index   = 0;
+
+  for (var i = 0; i < count; i++){
+    var d = document.createElement("button");
+    d.type = "button";
+    d.className = "dot";
+    d.setAttribute("aria-label", "Go to photo " + (i + 1));
+    d.dataset.i = i;
+    dotsBox.appendChild(d);
+  }
+  var dots = dotsBox.children;
+
+  function show(n){
+    index = (n + count) % count;
+    track.style.transform = "translateX(" + (-index * 100) + "%)";
+    caption.textContent = captions[index] || "";
+    counter.textContent = (index + 1) + " / " + count;
+    for (var i = 0; i < count; i++){
+      dots[i].setAttribute("aria-current", i === index ? "true" : "false");
+      slides[i].setAttribute("aria-hidden", i === index ? "false" : "true");
+    }
+  }
+
+  document.getElementById("prev").addEventListener("click", function(){ show(index - 1); });
+  document.getElementById("next").addEventListener("click", function(){ show(index + 1); });
+  dotsBox.addEventListener("click", function(e){
+    var b = e.target.closest(".dot");
+    if (b) show(parseInt(b.dataset.i, 10));
+  });
+
+  document.getElementById("carousel").addEventListener("keydown", function(e){
+    if (e.key === "ArrowLeft"){ e.preventDefault(); show(index - 1); }
+    if (e.key === "ArrowRight"){ e.preventDefault(); show(index + 1); }
+  });
+
+  /* swipe on phones */
+  var startX = null;
+  var vp = track.parentNode;
+  vp.addEventListener("pointerdown", function(e){ startX = e.clientX; });
+  vp.addEventListener("pointerup", function(e){
+    if (startX === null) return;
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 45) show(index + (dx < 0 ? 1 : -1));
+    startX = null;
+  });
+  vp.addEventListener("pointercancel", function(){ startX = null; });
+
+  show(0);
+
+  /* copy email / phone to the clipboard */
+  function setLabel(btn, text){
+    btn.textContent = text;
+    clearTimeout(btn._t);
+    btn._t = setTimeout(function(){ btn.textContent = btn.dataset.label; }, 2200);
+  }
+  function oldSchoolCopy(text){
+    var t = document.createElement("textarea");
+    t.value = text; t.setAttribute("readonly", "");
+    t.style.position = "absolute"; t.style.left = "-9999px";
+    document.body.appendChild(t); t.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(t);
+    return ok;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-copy]"), function(btn){
+    btn.addEventListener("click", function(){
+      var text = btn.dataset.copy;
+      function fallback(){
+        setLabel(btn, oldSchoolCopy(text) ? "Copied!" : "Couldn\u2019t copy \u2014 it\u2019s " + text);
+      }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(function(){ setLabel(btn, "Copied!"); }, fallback);
+        } else { fallback(); }
+      } catch (e) { fallback(); }
+    });
+  });
+
+  document.getElementById("copyright").textContent =
+    "© " + new Date().getFullYear() + " RC Tally";
+})();
+</script>
+</body>
+</html>
