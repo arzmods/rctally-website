@@ -408,7 +408,49 @@ body{padding-inline:20px}
 @media (max-width:820px){ .hero-grid{grid-template-columns:1fr} }
 
 /* main page founder card without the photo */
-.founder.founder-mini .founder-caption{border-top:1px solid var(--line); border-radius:12px}
+
+/* ============================================================
+   POLISH: less repetition, more variety between sections
+   ============================================================ */
+/* founder bar in About */
+.founder-mini{
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.9rem 1.5rem;
+  margin-top:1.8rem; padding:1rem 1.2rem; max-width:560px;
+  background:var(--surface); border:1px solid var(--line); border-radius:12px;
+}
+.founder-mini > div{display:grid; gap:.1rem}
+.founder-mini .btn{font-size:.9rem; padding:.7rem 1.05rem}
+
+/* service area card */
+.about-grid > .area{margin-top:0; max-width:none; padding:1.4rem 1.5rem 1.5rem; gap:.75rem}
+.area-title{font-size:1.25rem}
+.area-sub{color:var(--muted); font-size:.93rem; margin-top:-.35rem}
+.area-group{display:grid; gap:.45rem}
+.area-state{
+  font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif; font-size:.7rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--navy);
+}
+.towns{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem}
+.towns li{
+  background:var(--surface); border:1px solid var(--line-strong); border-radius:999px;
+  padding:.32rem .75rem; font-size:.88rem; font-weight:500;
+}
+.towns li.home-base{background:var(--purple); border-color:var(--purple); color:var(--on-purple)}
+.area-note{color:var(--muted); font-size:.9rem}
+.area-note a{color:var(--purple); font-weight:600}
+
+/* mission + vision as one panel */
+.mv{gap:0; background:var(--surface-2); border:1px solid var(--line); border-radius:16px; overflow:hidden}
+.mv-card{background:none; border:none; border-radius:0; padding:clamp(1.4rem,3vw,2rem)}
+.mv-card + .mv-card{border-left:1px solid var(--line)}
+.mv-title{font-size:1.1rem; color:var(--purple); margin-bottom:.55rem}
+@media (max-width:720px){ .mv-card + .mv-card{border-left:none; border-top:1px solid var(--line)} }
+
+/* services header: title and intro side by side */
+.section-head.split{
+  max-width:none; display:grid; grid-template-columns:1fr 1fr; gap:.8rem 3rem; align-items:end;
+}
+@media (max-width:760px){ .section-head.split{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -445,14 +487,9 @@ body{padding-inline:20px}
           <a class="btn" href="#contact">Get a free quote</a>
           <a class="btn ghost" href="tel:+18503000770">Call (850) 300-0770</a>
         </div>
-        <ul class="hero-facts">
-          <li>Based in Tallahassee</li>
-          <li>North Florida &amp; South Georgia</li>
-          <li>Mon&ndash;Fri &middot; 8am&ndash;5pm</li>
-        </ul>
       </div>
-      <img class="hero-img" src="img/home-cleaning.jpg"
-           alt="Bright, freshly cleaned living room with a vacuum and cleaning supplies">
+      <img class="hero-img" src="img/hero-living.jpg"
+           alt="Bright, freshly cleaned living room with sunlight through the window and a vacuum on the rug">
     </div>
   </section>
 
@@ -462,42 +499,50 @@ body{padding-inline:20px}
       <div class="about-copy">
         <p class="eyebrow">About us</p>
         <h2>Cleaning you don&rsquo;t have to think about.</h2>
-        <p class="lede">RC Tally is a locally owned cleaning company based in Tallahassee,
-          serving homes and businesses across North Florida and South Georgia.</p>
+        <p class="lede">RC Tally is a locally owned cleaning company working in homes, offices, and
+          healthcare spaces.</p>
         <p class="body-text">Our promise is simple: show up when we say we will, and leave the place
           better than we found it.</p>
 
-        <div class="area">
-          <span class="contact-label">Service area</span>
-          <p class="area-title">Based in Tallahassee &mdash; and we travel.</p>
-          <p class="area-list">We cover North Florida and South Georgia, including Crawfordville,
-            Quincy, Havana, Monticello, and Perry, plus Thomasville, Bainbridge, and Valdosta
-            across the Georgia line. Not sure if you&rsquo;re in range? Give us a call and ask.</p>
-        </div>
-        <div class="btn-row">
-          <a class="btn" href="#contact">Get a free quote</a>
-          <a class="btn ghost" href="#services">See our services</a>
-        </div>
+        <aside class="founder-mini" aria-label="About the founder">
+          <div>
+            <span class="role">Founder</span>
+            <span class="founder-name">Johnny A. Rodríguez</span>
+          </div>
+          <a class="btn ghost" href="founder.html">About the Founder &rarr;</a>
+        </aside>
       </div>
 
-      <aside class="founder founder-mini" aria-label="About the founder">
-        <div class="founder-caption">
-          <span class="role">Founder</span>
-          <span class="founder-name">Johnny A. Rodríguez</span>
-          <a class="btn ghost btn-founder" href="founder.html">About the Founder &rarr;</a>
+      <div class="area">
+        <span class="contact-label">Service area</span>
+        <p class="area-title">Based in Tallahassee &mdash; and we travel.</p>
+        <p class="area-sub">Serving North Florida and South Georgia, including:</p>
+        <div class="area-group">
+          <span class="area-state">Florida</span>
+          <ul class="towns">
+            <li class="home-base">Tallahassee</li><li>Crawfordville</li><li>Quincy</li>
+            <li>Havana</li><li>Monticello</li><li>Perry</li>
+          </ul>
         </div>
-      </aside>
+        <div class="area-group">
+          <span class="area-state">Georgia</span>
+          <ul class="towns">
+            <li>Thomasville</li><li>Bainbridge</li><li>Valdosta</li>
+          </ul>
+        </div>
+        <p class="area-note">Not sure if you&rsquo;re in range? <a href="tel:+18503000770">Give us a call</a> and ask.</p>
+      </div>
     </div>
 
     <div class="wrap mv">
       <div class="mv-card">
-        <p class="eyebrow">Our mission</p>
+        <h3 class="mv-title">Our Mission</h3>
         <p class="mv-text">To provide dependable, high-quality cleaning and property services while
           building lasting relationships with our clients and creating opportunities for the people
           who work alongside us.</p>
       </div>
       <div class="mv-card">
-        <p class="eyebrow">Our vision</p>
+        <h3 class="mv-title">Our Vision</h3>
         <p class="mv-text">To grow RC Tally into a trusted name in commercial cleaning and property
           services while never losing the values that built the company: hard work, integrity,
           excellence, and service.</p>
@@ -513,11 +558,13 @@ body{padding-inline:20px}
   <!-- ============================ SERVICES ============================ -->
   <section id="services" class="section">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Services</p>
-        <h2>What we clean</h2>
-        <p class="lede" style="margin-top:.8rem">Homes, offices, and clinical spaces. Pick the one that
-          fits, or call and we&rsquo;ll put together a plan for your space.</p>
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h2>What we clean</h2>
+        </div>
+        <p class="lede">Homes, offices, and clinical spaces. Pick the one that fits, or call and
+          we&rsquo;ll put together a plan for your space.</p>
       </div>
 
       <div class="services">
@@ -600,16 +647,12 @@ body{padding-inline:20px}
       <div>
         <p class="eyebrow">Contact us</p>
         <h2>Get a free quote</h2>
-        <p class="lede" style="margin-top:.9rem">Call or email and we&rsquo;ll set up a walkthrough.
-          Most estimates take under 15 minutes, and there&rsquo;s no charge for the visit.</p>
+        <p class="lede" style="margin-top:.9rem">Call or email and tell us about your space. We&rsquo;ll set
+          up a walkthrough and put together a quote.</p>
         <div class="contact-meta">
           <div class="meta-row">
             <span class="contact-label">Hours</span>
             <span>Monday &ndash; Friday, 8:00am &ndash; 5:00pm</span>
-          </div>
-          <div class="meta-row">
-            <span class="contact-label">Service area</span>
-            <span>Based in Tallahassee &mdash; North Florida &amp; South Georgia</span>
           </div>
         </div>
       </div>
