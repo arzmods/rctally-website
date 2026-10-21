@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Meet the founder of RC Tally Cleaning Service LLC - from dentistry in the Dominican Republic to building a cleaning company in Tallahassee.">
+<meta name="description" content="Meet the founder of RC Tally - from dentistry in the Dominican Republic to building RC Tally in Tallahassee.">
 <link rel="icon" type="image/png" href="img/logo-icon.png">
-<title>About the Founder | RC Tally Cleaning</title>
+<title>About the Founder | RC Tally</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Karla:wght@400;500;700&display=swap">
@@ -27,6 +27,8 @@
   --purple-deep:#3E005E;  /* button hover             */
   --purple-soft:#F3EBF7;  /* light purple tint        */
   --navy:#013286;         /* logo navy, small accents */
+  --blue:#0B4FB3;  --blue-deep:#083A85;  --blue-soft:#EAF1FC;   /* RC Tally Renovation */
+  --green:#0E7A47; --green-deep:#0A5A34; --green-soft:#E6F4EC;  /* RC Tally Tech */
   --on-purple:#FFFFFF;    /* text on purple           */
   --slot:#F6F2F9;         /* image placeholder bg     */
   --shadow:0 1px 2px rgba(11,10,15,.05), 0 14px 30px -20px rgba(11,10,15,.35);
@@ -59,7 +61,7 @@ body{padding-inline:20px}
 
 .section{padding-block:clamp(3.5rem,7vw,6rem)}
 .section+.section{border-top:1px solid var(--line)}
-:where(#home,#about,#services,#contact,#gallery){scroll-margin-top:8.5rem}
+:where(#home,#about,#tech,#renovation,#cleaning,#contact,#gallery){scroll-margin-top:8.5rem}
 
 .eyebrow{
   font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif;
@@ -346,7 +348,7 @@ body{padding-inline:20px}
   background:currentColor; opacity:.55; border-radius:1px;
 }
 @media (max-width:620px){
-  :where(#home,#about,#services,#contact,#gallery){scroll-margin-top:10.5rem}
+  :where(#home,#about,#tech,#renovation,#cleaning,#contact,#gallery){scroll-margin-top:10.5rem}
   .tagline::before,.tagline::after{min-width:30px}
 }
 
@@ -451,6 +453,43 @@ body{padding-inline:20px}
   max-width:none; display:grid; grid-template-columns:1fr 1fr; gap:.8rem 3rem; align-items:end;
 }
 @media (max-width:760px){ .section-head.split{grid-template-columns:1fr} }
+
+/* ============================================================
+   RC TALLY DIVISIONS — each section re-tints the shared purple tokens
+   ============================================================ */
+.div-cleaning{--accent:var(--purple)}
+.div-reno{--purple:var(--blue); --purple-deep:var(--blue-deep); --purple-soft:var(--blue-soft);
+  --line-strong:#AFC6EA; --shadow-purple:0 6px 18px -8px rgba(11,79,179,.5)}
+.div-tech{--purple:var(--green); --purple-deep:var(--green-deep); --purple-soft:var(--green-soft);
+  --line-strong:#A9D6BE; --shadow-purple:0 6px 18px -8px rgba(14,122,71,.5)}
+
+.section.division{border-top:4px solid var(--purple)}
+.division .eyebrow::before{background:var(--purple)}
+.section-tagline{justify-content:flex-start; margin-top:.7rem; max-width:260px}
+.division-cta{margin-top:1.8rem}
+
+/* text service cards with an icon (Tech + Renovation) */
+.svc-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem}
+.svc{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:1.3rem 1.25rem 1.4rem;
+  display:grid; gap:.55rem; align-content:start; transition:transform .2s ease, box-shadow .2s ease}
+.svc:hover{transform:translateY(-3px); box-shadow:var(--shadow)}
+.svc-icon{width:46px; height:46px; border-radius:12px; display:grid; place-content:center;
+  background:var(--purple-soft); color:var(--purple)}
+.svc-icon svg{width:24px; height:24px}
+.svc p{color:var(--muted); font-size:.93rem}
+@media (max-width:980px){ .svc-grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:560px){ .svc-grid{grid-template-columns:1fr} }
+
+/* division tiles on the home section */
+.div-tiles{display:grid; gap:.85rem}
+.div-tile{display:grid; gap:.2rem; padding:1.15rem 1.3rem; border-radius:14px; text-decoration:none;
+  background:var(--purple-soft); border:1px solid var(--line-strong); color:var(--ink);
+  border-left:6px solid var(--purple); transition:transform .15s ease, box-shadow .15s ease}
+.div-tile strong{font-family:"Bricolage Grotesque","Trebuchet MS",sans-serif; font-size:1.2rem; color:var(--purple)}
+.div-tile span{color:var(--muted); font-size:.93rem}
+.div-tile:hover{transform:translateX(4px); box-shadow:var(--shadow)}
+.div-tile.div-cleaning{--line-strong:#C4A6D3}
+@media (prefers-reduced-motion: reduce){ .svc,.div-tile{transition:none} }
 </style>
 </head>
 <body>
@@ -459,16 +498,16 @@ body{padding-inline:20px}
   <div class="bar-inner">
     <div class="brand">
       <a href="index.html"><img class="logo-img" src="img/logo.png"
-           alt="RC Tally Cleaning Service LLC - home"></a>
-      <p class="tagline">You Rest! We Clean!</p>
+           alt="RC Tally - home"></a>
     </div>
 
     <nav class="nav" aria-label="Main">
       <a href="index.html#home">Home</a>
       <a href="index.html#about">About Us</a>
-      <a href="index.html#services">Services</a>
+      <a href="index.html#tech">Tech</a>
+      <a href="index.html#renovation">Renovation</a>
+      <a href="index.html#cleaning">Cleaning</a>
       <a href="index.html#contact">Contact Us</a>
-      <a href="index.html#gallery">Gallery</a>
     </nav>
   </div>
 </header>
@@ -543,7 +582,7 @@ body{padding-inline:20px}
 <footer class="foot wrap">
   <div>
     <img class="foot-logo" src="img/logo-stacked.png"
-         alt="RC Tally Cleaning Service LLC">
+         alt="RC Tally">
     Based in Tallahassee. Serving North Florida &amp; South Georgia.
   </div>
   <div>
